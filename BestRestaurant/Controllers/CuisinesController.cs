@@ -9,35 +9,55 @@ namespace BestRestaurant.Controllers
   public class CuisinesController : Controller
   {
     private readonly BestRestaurantContext _db;
-
+    // This is a variable for the databases
     public CuisinesController(BestRestaurantContext db)
     {
       _db = db;
+      // Seems like a setter but isn't?
     }
 
     public ActionResult Index()
     {
       List<Cuisine> model = _db.Cuisines.ToList();
+      // This gets a list of all the data from the Cuisines table and converts it into a List<Cuisine>
       return View(model);
+      // This sends said list to the Cuisines/Index.cshtml
     }
 
     public ActionResult Create()
     {
       return View();
+      // All this does is redirect to Cuisines/Create.cshtml when called.
+      // Guess all the work happens in that webpage.
     }
 
+    // Data submit event triggered by the button in Cuisines/Create.cshtml
     [HttpPost]
+    // This takes the Cuisine Name submitted by the button as a parameter
     public ActionResult Create(Cuisine category)
     {
+      // Adds the new Name to the Cuisine database
       _db.Cuisines.Add(category);
+      // Saves
       _db.SaveChanges();
+      // And dumps the user back to Cuisines/
       return RedirectToAction("Index");
     }
 
+    // This takes in a provided ID retrieved from Cuisines/Index.cshtml
     public ActionResult Details(int id)
     {
+      // Creates a Cuisine object called thisCuisine, which looks through the database for the Cuisine ID that matches the submitted ID
       Cuisine thisCuisine = _db.Cuisines.FirstOrDefault(category => category.CuisineId == id);
+
+      // TESTING
+      // This should create a list object of all the Restaurant database info
+      List<Restaurant> model = _db.Restaurants.Where(category => category.CuisineId == id).ToList();
+      // 
+
+      // Returns the Details page, now populated by the Cuisine that matches this ID
       return View(thisCuisine);
+      // Can't just do return View(model); because the Details page matching this ID needs a Cuisine object
     }
     public ActionResult Edit(int id)
     {

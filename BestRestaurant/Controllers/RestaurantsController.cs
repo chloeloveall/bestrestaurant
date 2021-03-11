@@ -24,9 +24,19 @@ namespace BestRestaurant.Controllers
 
     public ActionResult Index(string userInput)
     {
-      if (userInput == "CuisineId3")
+      if (userInput == "Name")
       {
-        List<Restaurant> model = _db.Restaurants.Where(restaurants => restaurants.CuisineId == 3).OrderBy(restaurants => restaurants.CuisineId).ToList();
+        List<Restaurant> model = _db.Restaurants.Include(restaurants => restaurants.Cuisine).OrderBy(restaurants => restaurants.Name).ToList();
+        return View(model);
+      }
+      else if (userInput == "Address")
+      {
+        List<Restaurant> model = _db.Restaurants.Include(restaurants => restaurants.Cuisine).OrderBy(restaurants => restaurants.Address).ToList();
+        return View(model);
+      }
+      else if (userInput == "Cuisine")
+      {
+        List<Restaurant> model = _db.Restaurants.Include(restaurants => restaurants.Cuisine).OrderBy(restaurants => restaurants.Cuisine).ToList();
         return View(model);
       }
       else

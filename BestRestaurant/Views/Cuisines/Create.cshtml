@@ -2,13 +2,22 @@
   Layout = "_Layout";
 }
 
+@* This looks for the Cuisine database created in the controller? *@
 @model BestRestaurant.Models.Cuisine
 
 <h4>Add a new restaurant</h4>
 @using (Html.BeginForm())
 {
+    @* LabelFor gets our model's category name for the category titled "Name" *@
+    @* If it were model.CuisineId, then it should show the next one's ID... if it had one. *@
+    @* Anyway, it displays "Name" on the page as text *@
   @Html.LabelFor(model => model.Name)
+  
+    @* This creates a textbox that connects to that Name column, *@
+    @* where whatever gets entered in will be submitted to the database *@
   @Html.TextBoxFor(model => model.Name)
+  
+    @* Button which submits this data to the database *@
   <input type="submit" value="Add new category" />
 }
 <p>@Html.ActionLink("Show all cuisines", "Index")</p>

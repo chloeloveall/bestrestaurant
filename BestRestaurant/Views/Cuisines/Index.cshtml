@@ -12,8 +12,10 @@
 } 
 
 <ul>
+    @* Grabs every Cuisine from the table *@
   @foreach(Cuisine cuisine in Model)
   {
+      @* This creates a clickable link titled with the Cuisine's Name, that always redirects to the Details controller, passing the ID of the clicked Cuisine *@
     <li>@Html.ActionLink($"{cuisine.Name}", "Details", new { id = cuisine.CuisineId })</li>
   }
 </ul>

@@ -14,14 +14,14 @@
 
 @foreach (Restaurant restaurant in Model)
 {
-  @* EndWriteTagHelperAttribute(); *@
-  <li>@Html.ActionLink($"{restaurant.Name}", "Details", new { id = restaurant.RestaurantId }) | @restaurant.Cuisine.Name</li>
+  <li>@Html.ActionLink($"{restaurant.Name}", "Details", new { id = restaurant.RestaurantId }) | @restaurant.Cuisine.Name
+  </li>
 }
 
 <p>@Html.ActionLink("Add new restaurant", "Create")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
-
-@* Testing Sorting By Cuisine ID *@
 <hr>
-<p>@Html.ActionLink("Click this to see the places you should NEVER eat at!!!!", "Index", new {userInput = "CuisineId3"})
-</p>
+
+<p>@Html.ActionLink("Sort Restaurants by Name", "Index", new {userInput = "Name"})</p>
+<p>@Html.ActionLink("Sort Restaurants by Address", "Index", new {userInput = "Address"})</p>
+<p>@Html.ActionLink("Sort Restaurants by Cuisine", "Index", new {userInput = "Cuisine"})</p>
