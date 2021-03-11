@@ -37,7 +37,8 @@ namespace BestRestaurant.Controllers
     public ActionResult Details(int id)
     {
       Cuisine thisCuisine = _db.Cuisines.FirstOrDefault(category => category.CuisineId == id);
-      return View(thisCuisine);
+      List<Restaurant> theseRestaurants = _db.Restaurants.Where(restaurants => restaurants.CuisineId == id).ToList();
+      return View(theseRestaurants);
     }
     public ActionResult Edit(int id)
     {

@@ -16,10 +16,24 @@ namespace BestRestaurant.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
+    // public ActionResult Index()
+    // {
+    //   List<Restaurant> model = _db.Restaurants.Include(restaurants => restaurants.Cuisine).ToList();
+    //   return View(model);
+    // }
+
+    public ActionResult Index(string userInput)
     {
-      List<Restaurant> model = _db.Restaurants.Include(restaurants => restaurants.Cuisine).ToList();
-      return View(model);
+      if (userInput == "CuisineId")
+      {
+        List<Restaurant> model = _db.Restaurants.OrderBy(restaurants => restaurants.CuisineId).ToList();
+        return View(model);
+      }
+      else
+      {
+        List<Restaurant> model = _db.Restaurants.Include(restaurants => restaurants.Cuisine).ToList();
+        return View(model);
+      }
     }
 
     public ActionResult Create()

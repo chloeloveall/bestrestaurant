@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 
-@model BestRestaurant.Models.Cuisine
+@model BestRestaurant.Models.Cuisine;
 
 <h2>Cuisine Details</h2>
 <hr />
@@ -10,3 +10,11 @@
     <p>@Html.ActionLink("Edit Cuisine", "Edit", new { id = Model.CuisineId })</p>
     <p>@Html.ActionLink("Delete Cuisine", "Delete", new { id = Model.CuisineId })</p>
     <p>@Html.ActionLink("Back to list", "Index")</p>
+
+    @* We want this page to display any restaurant that matches this cuisine ID *@
+
+    @* @where(Model.Restaurants.CuisineId == Model.CuisineId)
+    {
+    <li>@Html.ActionLink($"{Model.Restaurants.Name}", "Details", new { id = Model.Restaurants.RestaurantId })
+    </li>
+    } *@
