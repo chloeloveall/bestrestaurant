@@ -2,12 +2,51 @@
   Layout = "_Layout";
 }
 
+@model BestRestaurant.Models.Restaurant
+
+<h2>Cuisine Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Cuisine.Name)</h3>
+
+<hr>
+
+<p>Restaurants that share this attribute are:</p>
+
+@* We are so close, just need a loop to get ALL of the model items and then check against the comparator below *@
+
+@if (Model.CuisineId == Model.Cuisine.CuisineId)
+{
+  <li>@Html.ActionLink($"{Model.Name}", "Details", new { id = Model.RestaurantId })</li>
+}
+
+<p></p>
+
+@Html.Partial("Partial")
+
+<hr>
+<p>@Html.ActionLink("Edit Cuisine", "Edit", new { id = Model.CuisineId })</p>
+<p>@Html.ActionLink("Delete Cuisine", "Delete", new { id = Model.CuisineId })</p>
+<p>@Html.ActionLink("Back to list", "Index")</p>
+
+@* @{
+  Layout = "_Layout";
+}
+
 @model BestRestaurant.Models.Cuisine
 
 <h2>Cuisine Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 
+<hr>
+
+<p>Restaurants that share this attribute are:</p>
+
+@Html.DisplayFor(model => model.CuisineId)
+
+@Html.Partial("Partial")
+
+<hr>
 <p>@Html.ActionLink("Edit Cuisine", "Edit", new { id = Model.CuisineId })</p>
 <p>@Html.ActionLink("Delete Cuisine", "Delete", new { id = Model.CuisineId })</p>
-<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Back to list", "Index")</p> *@

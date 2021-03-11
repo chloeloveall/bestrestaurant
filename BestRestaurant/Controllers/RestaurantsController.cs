@@ -36,7 +36,7 @@ namespace BestRestaurant.Controllers
       }
       else if (userInput == "Cuisine")
       {
-        List<Restaurant> model = _db.Restaurants.Include(restaurants => restaurants.Cuisine).OrderBy(restaurants => restaurants.Cuisine).ToList();
+        List<Restaurant> model = _db.Restaurants.Include(restaurants => restaurants.Cuisine).OrderBy(restaurants => restaurants.CuisineId).ToList();
         return View(model);
       }
       else

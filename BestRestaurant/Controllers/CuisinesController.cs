@@ -52,11 +52,11 @@ namespace BestRestaurant.Controllers
 
       // TESTING
       // This should create a list object of all the Restaurant database info
-      List<Restaurant> model = _db.Restaurants.Where(category => category.CuisineId == id).ToList();
+      Restaurant model = _db.Restaurants.FirstOrDefault(category => category.CuisineId == id);
       // 
 
       // Returns the Details page, now populated by the Cuisine that matches this ID
-      return View(thisCuisine);
+      return View(model);
       // Can't just do return View(model); because the Details page matching this ID needs a Cuisine object
     }
     public ActionResult Edit(int id)
